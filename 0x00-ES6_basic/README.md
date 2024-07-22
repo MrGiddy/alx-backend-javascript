@@ -142,7 +142,7 @@ Don’t forget to run ```npm install``` from the terminal of your project folder
 Modify
 * function ```taskFirst``` to instantiate variables using ```const```
 * function ```taskNext``` to instantiate variables using ```let```
-```
+```sh
 export function taskFirst() {
   var task = 'I prefer const when I can.';
   return task;
@@ -161,7 +161,7 @@ export function taskNext() {
 ```
 
 Execution example:
-```
+```sh
 bob@dylan:~$ cat 0-main.js
 import { taskFirst, taskNext } from './0-constants.js';
 
@@ -205,7 +205,7 @@ bob@dylan:~$
 
 ## 2. Arrow functions
 Rewrite the following standard function to use ES6’s arrow syntax of the function ```add``` (it will be an anonymous function after)
-```
+```sh
 export default function getNeighborhoodsList() {
   this.sanFranciscoNeighborhoods = ['SOMA', 'Union Square'];
 
@@ -218,7 +218,7 @@ export default function getNeighborhoodsList() {
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 2-main.js
 import getNeighborhoodsList from './2-arrow.js';
 
@@ -235,7 +235,7 @@ bob@dylan:~$
 Condense the internals of the following function to 1 line - without changing the name of each function/variable.
 
 _Hint_: The key here to define default parameter values for the function parameters.
-```
+```sh
 export default function getSumOfHoods(initialNumber, expansion1989, expansion2019) {
   if (expansion1989 === undefined) {
     expansion1989 = 89;
@@ -249,7 +249,7 @@ export default function getSumOfHoods(initialNumber, expansion1989, expansion201
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 3-main.js
 import getSumOfHoods from './3-default-parameter.js';
 
@@ -266,21 +266,21 @@ bob@dylan:~$
 
 ## 4. Rest parameter syntax for functions
 Modify the following function to return the number of arguments passed to it using the rest parameter syntax
-```
+```sh
 export default function returnHowManyArguments() {
 
 }
 ```
 
 Example:
-```
+```sh
 > returnHowManyArguments("Hello", "Holberton", 2020);
 3
 >
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 4-main.js
 import returnHowManyArguments from './4-rest-parameter.js';
 
@@ -295,13 +295,13 @@ bob@dylan:~$
 
 ## 5. The wonders of spread syntax
 Using spread syntax, concatenate 2 arrays and each character of a string by modifying the function below. Your function body should be one line long.
-```
+```sh
 export default function concatArrays(array1, array2, string) {
 }
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 5-main.js
 import concatArrays from './5-spread-operator.js';
 
@@ -319,7 +319,7 @@ bob@dylan:~$
 
 ## 6. Take advantage of template literals
 Rewrite the return statement to use a template literal so you can the substitute the variables you’ve defined.
-```
+```sh
 export default function getSanFranciscoDescription() {
   const year = 2017;
   const budget = {
@@ -335,7 +335,7 @@ export default function getSanFranciscoDescription() {
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 6-main.js
 import getSanFranciscoDescription from './6-string-interpolation.js';
 
@@ -351,7 +351,7 @@ bob@dylan:~$
 Notice how the keys and the variable names are the same?
 
 Modify the following function’s ```budget``` object to simply use the keyname instead.
-```
+```sh
 export default function getBudgetObject(income, gdp, capita) {
   const budget = {
     income: income,
@@ -364,7 +364,7 @@ export default function getBudgetObject(income, gdp, capita) {
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 7-main.js
 import getBudgetObject from './7-getBudgetObject.js';
 
@@ -378,7 +378,7 @@ bob@dylan:~$
 
 ## 8. No need to create empty objects before adding in properties
 Rewrite the ```getBudgetForCurrentYear``` function to use ES6 computed property names on the ```budget``` object
-```
+```sh
 function getCurrentYear() {
   const date = new Date();
   return date.getFullYear();
@@ -396,7 +396,7 @@ export default function getBudgetForCurrentYear(income, gdp, capita) {
 ```
 
 Execution:
-```
+```sh
 bob@dylan:~$ cat 8-main.js
 import getBudgetForCurrentYear from './8-getBudgetCurrentYear.js';
 
@@ -405,5 +405,43 @@ console.log(getBudgetForCurrentYear(2100, 5200, 1090));
 bob@dylan:~$
 bob@dylan:~$ npm run dev 8-main.js 
 { 'income-2021': 2100, 'gdp-2021': 5200, 'capita-2021': 1090 }
+bob@dylan:~$
+```
+
+## 9. ES6 method properties
+Rewrite ```getFullBudgetObject``` to use ES6 method properties in the ```fullBudget``` object
+```sh
+import getBudgetObject from './7-getBudgetObject.js';
+
+export default function getFullBudgetObject(income, gdp, capita) {
+  const budget = getBudgetObject(income, gdp, capita);
+  const fullBudget = {
+    ...budget,
+    getIncomeInDollars: function (income) {
+      return `$${income}`;
+    },
+    getIncomeInEuros: function (income) {
+      return `${income} euros`;
+    },
+  };
+
+  return fullBudget;
+}
+```
+
+Execution:
+```sh
+bob@dylan:~$ cat 9-main.js
+import getFullBudgetObject from './9-getFullBudget.js';
+
+const fullBudget = getFullBudgetObject(20, 50, 10);
+
+console.log(fullBudget.getIncomeInDollars(fullBudget.income));
+console.log(fullBudget.getIncomeInEuros(fullBudget.income));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 9-main.js 
+$20
+20 euros
 bob@dylan:~$
 ```
