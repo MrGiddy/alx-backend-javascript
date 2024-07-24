@@ -21,7 +21,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 # Requirements
 * All your files will be executed on Ubuntu 18.04 LTS using NodeJS 12.11.x
-* Allowed editors: ```vi```, ```vim```, em```acs, ```Visual Studio Code```
+* Allowed editors: ```vi```, ```vim```, ```emacs```, Visual Studio Code```
 * All your files should end with a new line
 * A ```README.md``` file, at the root of the folder of the project, is mandatory
 * Your code should use the ```js``` extension
@@ -51,7 +51,7 @@ in your project directory, install Jest, Babel and ESList by using the supplied 
 ## Configuration Files
 Add the files below to your project directory
 ## ```package.json```
-```sh
+```json
 {
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
@@ -74,7 +74,7 @@ Add the files below to your project directory
 ```
 
 ## ```babel.config.js```
-```sh
+```js
 module.exports = {
   presets: [
     [
@@ -91,7 +91,7 @@ module.exports = {
 
 ## ```utils.js```
 Use when you get to tasks requiring ```uploadPhoto``` and ```createUser```.
-```sh
+```js
 export function uploadPhoto() {
   return Promise.resolve({
     status: 200,
@@ -109,7 +109,7 @@ export function createUser() {
 ```
 
 ## ```.eslintrc.js```
-```sh
+```js
 module.exports = {
   env: {
     browser: false,
@@ -147,12 +147,12 @@ module.exports = {
 };
 ```
 
-```and```…
+**and**…
 Don’t forget to run ```$ npm install``` when you have the ```package.json```
 
 # Response Data Format
 ```uploadPhoto``` returns a response with the format
-```sh
+```json
 {
   status: 200,
   body: 'photo-profile-1',
@@ -160,7 +160,7 @@ Don’t forget to run ```$ npm install``` when you have the ```package.json```
 ```
 
 ```createUser``` returns a response with the format
-```sh
+```json
 {
   firstName: 'Guillaume',
   lastName: 'Salva',
@@ -180,5 +180,65 @@ console.log(response instanceof Promise);
 bob@dylan:~$ 
 bob@dylan:~$ npm run dev 0-main.js 
 true
+bob@dylan:~$ 
+```
+
+## 1. Don't make a promise...if you know you can't keep it
+Using the prototype below, return a ```promise```. The parameter is a ```boolean```.
+```
+getFullResponseFromAPI(success)
+```
+
+When the argument is:
+
+* ```true```
+  * resolve the promise by passing an object with 2 attributes:
+  * ```status```: ```200```
+  * ```body```: ```'Success'```
+
+* ```false```
+  * reject the promise with an error object with the message ```The fake API is not working currently```
+
+Try testing it out for yourself
+```
+bob@dylan:~$ cat 1-main.js
+import getFullResponseFromAPI from './1-promise';
+
+console.log(getFullResponseFromAPI(true));
+console.log(getFullResponseFromAPI(false));
+
+bob@dylan:~$ 
+bob@dylan:~$ npm run dev 1-main.js 
+Promise { { status: 200, body: 'Success' } }
+Promise {
+  <rejected> Error: The fake API is not working currently
+    ...
+    ...
+bob@dylan:~$ 
+```
+
+## 2. Catch me if you can!
+Using the function prototype below
+```
+function handleResponseFromAPI(promise)
+```
+
+Append three handlers to the function:
+
+* When the Promise resolves, return an object with the following attributes
+  * ```status```: ```200```
+  * ```body```: ```success```
+* When the Promise rejects, return an empty ```Error``` object
+* For every resolution, log ```Got a response from the API``` to the console
+```
+bob@dylan:~$ cat 2-main.js
+import handleResponseFromAPI from "./2-then";
+
+const promise = Promise.resolve();
+handleResponseFromAPI(promise);
+
+bob@dylan:~$ 
+bob@dylan:~$ npm run dev 2-main.js 
+Got a response from the API
 bob@dylan:~$ 
 ```
