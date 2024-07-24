@@ -185,7 +185,7 @@ bob@dylan:~$
 
 ## 1. Don't make a promise...if you know you can't keep it
 Using the prototype below, return a ```promise```. The parameter is a ```boolean```.
-```
+```js
 getFullResponseFromAPI(success)
 ```
 
@@ -200,7 +200,7 @@ When the argument is:
   * reject the promise with an error object with the message ```The fake API is not working currently```
 
 Try testing it out for yourself
-```
+```sh
 bob@dylan:~$ cat 1-main.js
 import getFullResponseFromAPI from './1-promise';
 
@@ -219,7 +219,7 @@ bob@dylan:~$
 
 ## 2. Catch me if you can!
 Using the function prototype below
-```
+```js
 function handleResponseFromAPI(promise)
 ```
 
@@ -230,7 +230,7 @@ Append three handlers to the function:
   * ```body```: ```success```
 * When the Promise rejects, return an empty ```Error``` object
 * For every resolution, log ```Got a response from the API``` to the console
-```
+```sh
 bob@dylan:~$ cat 2-main.js
 import handleResponseFromAPI from "./2-then";
 
