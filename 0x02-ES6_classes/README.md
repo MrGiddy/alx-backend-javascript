@@ -27,13 +27,13 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 # Setup
 ## Install NodeJS 12.11.x
 (in your home directory):
-```
+```sh
 curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
 sudo bash nodesource_setup.sh
 sudo apt install nodejs -y
 ```
 
-```
+```sh
 $ nodejs -v
 v12.11.1
 $ npm -v
