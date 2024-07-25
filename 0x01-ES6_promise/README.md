@@ -51,7 +51,7 @@ in your project directory, install Jest, Babel and ESList by using the supplied 
 ## Configuration Files
 Add the files below to your project directory
 ## ```package.json```
-```json
+```js
 {
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
@@ -152,7 +152,7 @@ Don’t forget to run ```$ npm install``` when you have the ```package.json```
 
 # Response Data Format
 ```uploadPhoto``` returns a response with the format
-```json
+```js
 {
   status: 200,
   body: 'photo-profile-1',
@@ -160,7 +160,7 @@ Don’t forget to run ```$ npm install``` when you have the ```package.json```
 ```
 
 ```createUser``` returns a response with the format
-```json
+```js
 {
   firstName: 'Guillaume',
   lastName: 'Salva',
@@ -272,7 +272,7 @@ function signUpUser(firstName, lastName) {
 ```
 
 That returns a resolved promise with this object:
-```json
+```js
 {
   firstName: value,
   lastName: value,
