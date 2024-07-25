@@ -178,7 +178,7 @@ Constructor attributes:
 * Make sure to verify the type of attributes during object creation
 * Each attribute must be stored in an “underscore” attribute version (ex: ```name``` is stored in ```_name```)
 * Implement a getter and setter for each attribute.
-```
+```sh
 bob@dylan:~$ cat 2-main.js
 import HolbertonCourse from "./2-hbtn_course.js";
 
@@ -222,10 +222,12 @@ Implement a class named ```Currency```:
 * Constructor attributes:
   * ```code``` (String)
   * ```name``` (String)
+
 * Each attribute must be stored in an “underscore” attribute version (ex: ```name``` is stored in ```_name```)
 * Implement a getter and setter for each attribute.
 * Implement a method named ```displayFullCurrency``` that will return the attributes in the following format ```name (code)```.
-```
+
+```sh
 bob@dylan:~$ cat 3-main.js
 import Currency from "./3-currency.js";
 
