@@ -21,6 +21,14 @@ export default class Car {
     this._motor = value;
   }
 
+  get color() {
+    return this._color;
+  }
+
+  set color(value) {
+    this._color = value;
+  }
+
   static get [Symbol.species]() {
     return this;
   }
