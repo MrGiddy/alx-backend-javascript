@@ -273,3 +273,64 @@ bob@dylan:~$ npm run dev 4-main.js
 ]
 bob@dylan:~$
 ```
+
+## 5. Typed Arrays
+Create a function named ```createInt8TypedArray``` that returns a new ```ArrayBuffer``` with an ```Int8``` value at a specific position.
+
+It should accept three arguments: ```length``` (Number), ```position``` (Number), and ```value``` (Number).
+
+If adding the value is not possible the error ```Position outside range``` should be thrown.
+```sh
+bob@dylan:~$ cat 5-main.js
+import createInt8TypedArray from "./5-typed_arrays.js";
+
+console.log(createInt8TypedArray(10, 2, 89));
+
+bob@dylan:~$ 
+bob@dylan:~$ npm run dev 5-main.js 
+DataView {
+  byteLength: 10,
+  byteOffset: 0,
+  buffer: ArrayBuffer {
+    [Uint8Contents]: <00 00 59 00 00 00 00 00 00 00>,
+    byteLength: 10
+  }
+}
+bob@dylan:~$ 
+```
+
+## 6. Set data structure
+Create a function named ```setFromArray``` that returns a ```Set``` from an array.
+
+It accepts an argument (Array, of any kind of element).
+```sh
+bob@dylan:~$ cat 6-main.js
+import setFromArray from "./6-set.js";
+
+console.log(setFromArray([12, 32, 15, 78, 98, 15]));
+
+bob@dylan:~$ 
+bob@dylan:~$ npm run dev 6-main.js 
+Set { 12, 32, 15, 78, 98 }
+bob@dylan:~$ 
+```
+
+## 7. More set data structure
+Create a function named ```hasValuesFromArray``` that returns a ```boolean``` if all the elements in the array exist within the set.
+
+It accepts two arguments: a ```set``` (Set) and an ```array``` (Array).
+```sh
+bob@dylan:~$ cat 7-main.js
+import hasValuesFromArray from "./7-has_array_values.js";
+
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1]));
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [10]));
+console.log(hasValuesFromArray(new Set([1, 2, 3, 4, 5]), [1, 10]));
+
+bob@dylan:~$ 
+bob@dylan:~$ npm run dev 7-main.js 
+true
+false
+false
+bob@dylan:~$ 
+```
